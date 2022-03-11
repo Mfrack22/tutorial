@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
+#include <time.h>
+#include <unistd.h>
 
 
 void *hello_world(void *param){
@@ -13,12 +15,15 @@ void *hello_world(void *param){
 void *goodbye(void *param){
 
     printf("Goodbye");
+    sleep(rand()%10);
     return NULL;
 }
 
 int main(void)
 {
-
+    time_t tt;
+    time(&tt);
+    srand(tt);
     pthread_t firstid;     // id for thread one
     pthread_t secondid;    // id for thread two
 

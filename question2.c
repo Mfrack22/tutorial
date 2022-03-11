@@ -15,19 +15,19 @@ void *bellcurve(void *param){
     // derefrence param to int pointer
     int grade = *(int*)param;
     int curve = grade * 1.5;
+    int i = 0;
     if(curve > 100){
         curve = 100;
-        printf("Student %d Grade: %d \n", grade+1, curve);
+        printf(" Grade: %d \n", curve);
     }else
     {
-        printf("Student %d Grade: %d \n", grade+1, curve);
+        printf(" Grade: %d \n",  curve);
     }
-    pthread_exit(0);
+    // pthread_exit(0);
 }
 
 int main(int argc, char* argv[]){
-
-    pthread_t threads[NUM_THREADS];\
+    pthread_t threads[NUM_THREADS];
 
     int grades[NUM_GRADES];
     //int *grades;
@@ -53,6 +53,7 @@ int main(int argc, char* argv[]){
 
     //Join threads back to process
     for(int k = 0; k < NUM_THREADS; k++){
+        // printf("Student %d", k);
         if(pthread_join(threads[k],NULL)!=0){
             perror("Faled to join thread");
         }
